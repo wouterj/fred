@@ -1,0 +1,30 @@
+{
+    "name": "wouterj/chef",
+    "description": "A very simple task runner",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Wouter J",
+            "email": "wouter@wouterj.nl"
+        }
+    ],
+
+    "require": {
+        "react/stream": "~0.5",
+        "symfony/console": "2.*",
+        "symfony/finder": "2.*"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.1"
+    },
+    "minimum-stability": "dev",
+
+    "autoload": {
+        "psr-4": {"WouterJ\\Chef\\": "src"}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
