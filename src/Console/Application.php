@@ -18,7 +18,7 @@ use Symfony\Component\Console\Application as BaseApplication;
  */
 class Application extends BaseApplication
 {
-    const FRED_VERSION = '0.1.0';
+    const FRED_VERSION = '0.2-dev';
 
     public function __construct()
     {
