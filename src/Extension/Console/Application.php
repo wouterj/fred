@@ -13,7 +13,7 @@ class Application extends BaseApplication
 
     public function __construct()
     {
-        parent::__construct('Chef', self::FRED_VERSION);
+        parent::__construct('Fred', self::FRED_VERSION);
     }
 
     public function find($name)
