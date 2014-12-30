@@ -35,7 +35,7 @@ class PhpSpec implements Step
                 ->add($file->info()->getRealPath())
                 ->getProcess();
 
-            $process->mustRun();
+            $process->run();
 
             $file->setContent($process->getOutput());
 
