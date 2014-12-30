@@ -58,12 +58,19 @@ class Fred
         }
     }
 
-    public function src(Finder $files)
+    /**
+     * @param \IteratorAggregate|\Traversable $files
+     */
+    public function load($files)
     {
+        if ($files instanceof \IteratorAggregate) {
+            $files = $files->getIterator();
+        }
 
-    }
+        $files = new Iterator\MapIterator($files, function ($file) {
+            return new File($file);
+        });
 
-    public function dest($outPath)
-    {
+        return new StepStack($files);
     }
 }
