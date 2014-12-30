@@ -10,7 +10,6 @@
     ],
 
     "require": {
-        "react/stream": "~0.5",
         "symfony/console": "2.*",
         "symfony/finder": "2.*"
     },

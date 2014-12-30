@@ -9,11 +9,11 @@ use Symfony\Component\Console\Application as BaseApplication;
  */
 class Application extends BaseApplication
 {
-    const CHEF_VERSION = '1.0-dev';
+    const FRED_VERSION = '1.0-dev';
 
     public function __construct()
     {
-        parent::__construct('Chef', self::CHEF_VERSION);
+        parent::__construct('Chef', self::FRED_VERSION);
     }
 
     public function find($name)
