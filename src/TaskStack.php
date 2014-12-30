@@ -2,8 +2,6 @@
 
 namespace WouterJ\Fred;
 
-use Traversable;
-
 /**
  * @author Wouter J <wouter@wouterj.nl>
  */
