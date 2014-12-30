@@ -19,7 +19,10 @@
     "minimum-stability": "dev",
 
     "autoload": {
-        "psr-4": {"WouterJ\\Fred\\": "src"}
+        "psr-4": {
+            "WouterJ\\Fred\\": "src",
+            "WouterJ\\Fred\\Extension\\": "ext"
+        }
     },
     "extra": {
         "branch-alias": {
