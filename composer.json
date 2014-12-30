@@ -1,6 +1,6 @@
 {
-    "name": "wouterj/chef",
-    "description": "A very simple task runner",
+    "name": "wouterj/fred",
+    "description": "A very simple iteration based task runner",
     "license": "BSD",
     "authors": [
         {
@@ -16,7 +16,7 @@
     "require-dev": {
         "phpspec/phpspec": "~2.1"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
 
     "autoload": {
         "psr-4": {

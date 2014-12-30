@@ -1,6 +1,15 @@
 <?php
 
-namespace WouterJ\Fred\Extension\Console;
+/*
+ * This file is part of Fred, a simple PHP task runner.
+ *
+ * (c) Wouter de Jong <wouter@wouterj.nl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace WouterJ\Fred\Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
 
@@ -9,7 +18,7 @@ use Symfony\Component\Console\Application as BaseApplication;
  */
 class Application extends BaseApplication
 {
-    const FRED_VERSION = '1.0-dev';
+    const FRED_VERSION = '0.1.0';
 
     public function __construct()
     {
