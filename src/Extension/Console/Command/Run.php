@@ -1,6 +1,6 @@
 <?php
 
-namespace WouterJ\Chef\Extension\Console\Command;
+namespace WouterJ\Fred\Extension\Console\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,12 +16,15 @@ class Run extends Command
     {
         $this->setName('run')
             ->setDescription('Executes the task')
-            ->addArgument('task', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The task to run')
         ;
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        // execute tasks
+        $taskName = $input->getArgument('command');
+
+        $chef = require_once getcwd().'/fred.php';
+
+        $chef->execute($taskName);
     }
 }

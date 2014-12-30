@@ -2,6 +2,6 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-$app = new WouterJ\Chef\Extension\Console\Application();
+$app = new WouterJ\Fred\Extension\Console\Application();
 
 $app->run();

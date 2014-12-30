@@ -1,0 +1,4 @@
+suites:
+    default:
+        namespace: WouterJ\Fred
+        psr4_prefix: WouterJ\Fred

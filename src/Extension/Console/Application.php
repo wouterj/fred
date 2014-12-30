@@ -1,6 +1,6 @@
 <?php
 
-namespace WouterJ\Chef\Extension\Console;
+namespace WouterJ\Fred\Extension\Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
 
@@ -25,7 +25,10 @@ class Application extends BaseApplication
                 throw $e;
             }
 
-            return new Command\Run();
+            $runCommand = new Command\Run();
+            $runCommand->setApplication($this);
+
+            return $runCommand;
         }
     }
 }

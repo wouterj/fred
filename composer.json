@@ -20,7 +20,7 @@
     "minimum-stability": "dev",
 
     "autoload": {
-        "psr-4": {"WouterJ\\Chef\\": "src"}
+        "psr-4": {"WouterJ\\Fred\\": "src"}
     },
     "extra": {
         "branch-alias": {
