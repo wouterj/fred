@@ -36,11 +36,11 @@ class Fred
             if (is_callable($dependencies)) {
                 // ->task('default', function () { ... });
                 $closure = $dependencies;
+                $dependencies = array();
             } elseif (is_array($dependencies)) {
                 // ->task('default', ['minify', 'build'])
                 $closure = function () { };
             }
-            $dependencies = array();
         } elseif (is_array($dependencies) && is_callable($closure)) {
             // ->task('default', ['minify'], function () { ... });
             // do nothing, it's valid now
