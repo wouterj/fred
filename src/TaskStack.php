@@ -19,6 +19,9 @@ class TaskStack implements \IteratorAggregate
     /** @var Task[] */
     private $tasks = array();
 
+    /**
+     * @return TaskStack
+     */
     public function getStackForTask($name)
     {
         if (!$this->has($name)) {
