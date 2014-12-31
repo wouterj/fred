@@ -16,7 +16,8 @@
     },
     "require-dev": {
         "phpspec/phpspec": "~2.1",
-        "behat/behat": "~3.0"
+        "behat/behat": "~3.0",
+        "phpunit/phpunit": "4.*"
     },
     "minimum-stability": "dev",
 
