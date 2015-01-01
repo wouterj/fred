@@ -14,7 +14,7 @@ namespace WouterJ\Fred;
 /**
  * @author Wouter J <wouter@wouterj.nl>
  */
-class StepStack
+class StepSequence
 {
     /** @var \Traversable */
     private $files;

@@ -89,6 +89,6 @@ class Fred
             return new File($file);
         });
 
-        return new StepStack($files);
+        return new StepSequence($files);
     }
 }
