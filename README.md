@@ -5,6 +5,8 @@ Welcome to Fred. Fred will execute tasks that you have described in a fred file.
  > Fred is not a grown up man at the moment. The steps used in this docs are not
  > yet implemented. Do you help me teach him how to do developer tasks?
 
+[![Build Status](https://travis-ci.org/WouterJ/fred.svg?branch=master)](https://travis-ci.org/WouterJ/fred)
+
 ## Why should I use Fred?
 
 * You don't have to spent time installing NodeJS, NPM on your server just to run tasks;
