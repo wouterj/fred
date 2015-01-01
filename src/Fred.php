@@ -58,9 +58,18 @@ class Fred
         $this->taskStack->push(new Task($name, (array) $dependencies, $closure));
     }
 
+    public function getTaskStack()
+    {
+        return $this->taskStack;
+    }
+
     public function execute($name)
     {
         $stack = $this->taskStack->getStackForTask($name);
+
+        if (0 === count($stack)) {
+            throw new \InvalidArgumentException(sprintf('No task with name "%s" can be found', $name));
+        }
 
         foreach ($stack as $task) {
             call_user_func($task->getTask());

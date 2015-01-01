@@ -9,4 +9,8 @@ $fred->task('test', function () use ($fred) {
         ->dest(STDOUT);
 });
 
-return $fred;
+$fred->task('pass', function () {
+    echo 'Yeaah!';
+
+    throw new \Exception('Joehoe!');
+});

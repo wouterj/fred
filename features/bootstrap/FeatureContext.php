@@ -55,7 +55,10 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function assertOutput(PystringNode $output)
     {
-        PHPUnit_Framework_Assert::assertContains($output->getRaw(), $this->process->getOutput());
+        PHPUnit_Framework_Assert::assertContains(
+            $this->normalizeString($output->getRaw()),
+            $this->normalizeString($this->process->getOutput())
+        );
     }
 
     /**
@@ -66,5 +69,10 @@ class FeatureContext implements Context, SnippetAcceptingContext
         PHPUnit_Framework_Assert::assertFileExists($name);
 
         PHPUnit_Framework_Assert::assertContains($contents->getRaw(), file_get_contents($name));
+    }
+
+    protected function normalizeString($string)
+    {
+        return preg_replace('/\R/', "\n", $string);
     }
 }

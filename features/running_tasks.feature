@@ -17,7 +17,7 @@ Feature: Running tasks using CLI
     When I run "fred build"
     Then I should see:
       """
-       * Executed task "build"
+       +- Executed task "build"
       """
     And "result.txt" file should contain:
       """
@@ -36,11 +36,11 @@ Feature: Running tasks using CLI
     When I run "fred build"
     Then I should see:
       """
-       +- Executing task: "build"
+       +- Executing task "build"
        |
        |    Inside build task!
        |
-       \  Task "build" was executed succesfully
+       \  Task "build" was executed successfully
       """
 
   Scenario: Running an undefined task
@@ -66,10 +66,10 @@ Feature: Running tasks using CLI
     When I run "fred build"
     Then I should see:
       """
-       +- Executing task: "build"
+       +- Executing task "build"
        |
-       |      [Exception]
-       |      Ghnenene...
+       |    [Exception]
+       |    Ghnenene...
        |
-       \  An error occured while executing task "build"
+       \  An error occurred while executing task "build"
       """

@@ -23,6 +23,7 @@ Feature: The Fred File
 
       * some_task
       * other_task
+
       """
 
   Scenario: Fred file is empty
@@ -33,11 +34,11 @@ Feature: The Fred File
     When I run "fred --list"
     Then I should see:
       """
-      Bummer! Fred hasn't learned anything yet.
+      Bummer! Fred didn't learn anything yet.
 
-      Edit the fred.php and add some tasks to it, like:
+      Edit the fred.php file and add some tasks in it, like:
 
-          $fred->task('fill_fredfile', function () use ($fred) {
+          $fred->task("fill_fred_file", function () use ($fred) {
               // ...
           });
       """
@@ -47,5 +48,5 @@ Feature: The Fred File
     When I run "fred --list"
     Then I should see:
       """
-      Fred can't work, as there is no fred file (fred.php) found.
+      Fred can't do his work: He can't find the fred file (fred.php).
       """
