@@ -27,6 +27,7 @@
             "WouterJ\\Fred\\Extension\\": "ext"
         }
     },
+    "bin": ["bin/fred"],
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
