@@ -85,9 +85,9 @@ class Run extends Base
             $this->colorize(' |', $failed),
         ));
 
-        $that = $this;
-        $prefix = function ($line) use ($failed, $that) {
-            return $that->colorize('' === trim($line) ? ' |' : ' |    ', $failed).$line;
+        $colorize = array($this, 'colorize');
+        $prefix = function ($line) use ($failed, $colorize) {
+            return call_user_func($colorize, '' === trim($line) ? ' |' : ' |    ', $failed).$line;
         };
 
         $output->writeln(array_map($prefix, $taskOutputLines));
