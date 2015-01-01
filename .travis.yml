@@ -20,8 +20,7 @@ matrix:
 
 before_script:
   - composer selfupdate
-  - if [[ "$PACKAGE_VERSION" == "" ]]; then composer update; fi
-  - if [[ "$PACKAGE_VERSION" == "low" ]]; then composer update "$COMPOSER_FLAGS"; fi
+  - composer update "$COMPOSER_FLAGS"
 
 script:
   - ./vendor/bin/behat -fprogress
