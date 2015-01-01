@@ -20,4 +20,6 @@ before_script:
   - if [[ "$PACKAGE_VERSION" == "high" ]]; then composer update --prefer-source; fi
   - if [[ "$PACKAGE_VERSION" == "low" ]]; then composer update --prefer-lowest --prefer-source; fi
 
-script: php bin/fred.php test
+script:
+  - ./vendor/bin/behat -fprogress
+  - ./vendor/bin/phpspec run
