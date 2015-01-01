@@ -85,9 +85,9 @@ class Run extends Base
             $this->colorize(' |', $failed),
         ));
 
-        $colorize = array($this, 'colorize');
-        $prefix = function ($line) use ($failed, $colorize) {
-            return call_user_func($colorize, '' === trim($line) ? ' |' : ' |    ', $failed).$line;
+        $that = $this;
+        $prefix = function ($line) use ($failed, $that) {
+            return $that->colorize('' === trim($line) ? ' |' : ' |    ', $failed).$line;
         };
 
         $output->writeln(array_map($prefix, $taskOutputLines));
@@ -104,7 +104,10 @@ class Run extends Base
         return $taskOutput;
     }
 
-    private function colorize($string, $failed = false)
+    /**
+     * @todo change to private when PHP 5.3 support is dropped
+     */
+    public function colorize($string, $failed = false)
     {
         $color = $failed ? 'red' : 'green';
 
