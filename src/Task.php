@@ -32,17 +32,11 @@ class Task
         $this->task = $task;
     }
 
-    /**
-     * @return array
-     */
     public function getDependencies()
     {
         return $this->dependencies;
     }
 
-    /**
-     * @return string
-     */
     public function getName()
     {
         return $this->name;

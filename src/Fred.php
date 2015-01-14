@@ -11,8 +11,6 @@
 
 namespace WouterJ\Fred;
 
-use Symfony\Component\Finder\Finder;
-
 /**
  * @author Wouter J <wouter@wouterj.nl>
  */
@@ -63,6 +61,9 @@ class Fred
         return $this->taskStack;
     }
 
+    /**
+     * Execute a task.
+     */
     public function execute($name)
     {
         $stack = $this->taskStack->getStackForTask($name);
