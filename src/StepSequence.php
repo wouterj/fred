@@ -31,7 +31,14 @@ class StepSequence
         return $this;
     }
 
-    public function dest($glob)
+    public function dist($glob)
+    {
+        trigger_error(__CLASS__.'::dist() is deprecated since 0.3, use '.__CLASS__.'::save() instead.', E_USER_DEPRECATED);
+
+        return $this->save($glob);
+    }
+
+    public function save($glob)
     {
         if (STDOUT === $glob) {
             foreach ($this->files as $file) {
