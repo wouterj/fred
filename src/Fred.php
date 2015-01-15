@@ -77,6 +77,11 @@ class Fred
         }
     }
 
+    public function create($name)
+    {
+        return new StepSequence(new \ArrayIterator(array(new VirtualFile($name))));
+    }
+
     /**
      * @param \IteratorAggregate|\Traversable $files
      */

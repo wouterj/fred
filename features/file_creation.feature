@@ -8,10 +8,12 @@ Feature: File creation tasks
       """
       <?php
 
+      use WouterJ\Fred\Extension\Contents;
+
       $fred->task('create_readme', function () use ($fred) {
 
           $fred->create('README.md')
-            ->then(contents('Yes, you tried to read me!'))
+            ->then(new Contents('Yes, you tried to read me!'))
             ->save();
 
       });
