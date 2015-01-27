@@ -28,6 +28,11 @@ class File
         $this->content = $info->getContents();
     }
 
+    public function name()
+    {
+        return $this->info()->getFilename();
+    }
+
     public function info()
     {
         return $this->info;

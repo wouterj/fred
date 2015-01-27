@@ -14,7 +14,6 @@ namespace WouterJ\Fred\Console;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use WouterJ\Fred\Fred;
 
 /**
  * @author Wouter J <wouter@wouterj.nl>

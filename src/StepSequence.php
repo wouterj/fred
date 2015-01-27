@@ -12,6 +12,8 @@
 namespace WouterJ\Fred;
 
 /**
+ * A simple helper to decorate iterators with other iterators.
+ *
  * @author Wouter J <wouter@wouterj.nl>
  */
 class StepSequence
@@ -24,6 +26,9 @@ class StepSequence
         $this->files = $files;
     }
 
+    /**
+     * Add a step to the sequence.
+     */
     public function then(Step $step)
     {
         $this->files = $step->constructIterator($this->files);
@@ -38,7 +43,12 @@ class StepSequence
         return $this->save($glob);
     }
 
-    public function save($glob)
+    /**
+     * Save the result tree to $glob.
+     *
+     * @param string $glob STDOUT, a directory or a file
+     */
+    public function save($glob = null)
     {
         if (STDOUT === $glob) {
             foreach ($this->files as $file) {
@@ -47,10 +57,14 @@ class StepSequence
         } elseif (is_dir($glob)) {
             /** @var File $file */
             foreach ($this->files as $file) {
-                file_put_contents($glob.DIRECTORY_SEPARATOR.$file->info()->getFilename(), $file->content());
+                file_put_contents($glob.DIRECTORY_SEPARATOR.$file->name(), $file->content());
             }
         } elseif (1 === count($this->files)) {
             $file = current(iterator_to_array($this->files));
+
+            if (null === $glob) {
+                $glob = $file->name();
+            }
 
             file_put_contents(getcwd().DIRECTORY_SEPARATOR.$glob, $file->content());
         } else {

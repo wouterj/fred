@@ -12,6 +12,8 @@
 namespace WouterJ\Fred\Iterator;
 
 /**
+ * An iterator that calls a callback for each item.
+ *
  * @author Wouter J <wouter@wouterj.nl>
  */
 class MapIterator extends \IteratorIterator
