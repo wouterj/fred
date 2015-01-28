@@ -11,6 +11,7 @@
 
 namespace WouterJ\Fred;
 
+use WouterJ\Fred\Exception\MissingArgumentsException;
 use WouterJ\Fred\Exception\TaskNotFoundException;
 
 /**
@@ -66,7 +67,7 @@ class Fred
     /**
      * Executes a task.
      */
-    public function execute($name)
+    public function execute($name, array $arguments = array())
     {
         $stack = $this->taskStack->getStackForTask($name);
 
@@ -75,7 +76,23 @@ class Fred
         }
 
         foreach ($stack as $task) {
-            call_user_func($task->getTask());
+            $callable = $task->getTask();
+            $callableReflection = new \ReflectionFunction($callable);
+            $callableArguments = array();
+
+            foreach ($callableReflection->getParameters() as $parameter) {
+                $name = $parameter->getName();
+
+                if (isset($arguments[$name])) {
+                    $callableArguments[] = $arguments[$name];
+                } elseif ($parameter->isOptional()) {
+                    $callableArguments[] = $parameter->getDefaultValue();
+                } else {
+                    throw new MissingArgumentsException($task->getName(), $task->getSynopsis());
+                }
+            }
+
+            return call_user_func_array($callable, $callableArguments);
         }
     }
 

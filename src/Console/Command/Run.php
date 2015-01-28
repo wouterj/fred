@@ -11,6 +11,7 @@
 
 namespace WouterJ\Fred\Console\Command;
 
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use WouterJ\Fred\Exception\TaskNotFoundException;
@@ -25,6 +26,7 @@ class Run extends Base
     {
         $this->setName('run')
             ->setDescription('Executes the task')
+            ->addArgument('arguments', InputArgument::IS_ARRAY | InputArgument::OPTIONAL)
         ;
     }
 
@@ -32,18 +34,24 @@ class Run extends Base
     {
         $taskName = $input->getArgument('command');
         $fred = $this->createFred();
+        $arguments = array();
+        foreach ($input->getArgument('arguments') as $argument) {
+            list($name, $value) = explode('=', $argument, 2);
 
-        return $this->executeTask($output, $taskName, $fred);
+            $arguments[$name] = $value;
+        }
+
+        return $this->executeTask($output, $taskName, $arguments, $fred);
     }
 
-    private function executeTask(OutputInterface $output, $taskName, Fred $fred)
+    private function executeTask(OutputInterface $output, $taskName, array $arguments, Fred $fred)
     {
         $output->write(' +- Executing task "'.$taskName.'"');
 
         $failed = false;
         $taskOutput = '';
         try {
-            $taskOutput .= $this->executeAndBufferOutput($taskName, $fred);
+            $taskOutput .= $this->executeAndBufferOutput($taskName, $arguments, $fred);
         } catch (TaskNotFoundException $e) {
             $output->writeln("\r<error>Oh no! Fred couldn't find the task \"".$taskName.'" in the fred file (fred.php)</error>');
 
@@ -96,10 +104,10 @@ class Run extends Base
         $output->writeln($this->colorize(' |', $failed));
     }
 
-    private function executeAndBufferOutput($taskName, Fred $fred)
+    private function executeAndBufferOutput($taskName, array $arguments, Fred $fred)
     {
         ob_start();
-        $fred->execute($taskName);
+        $fred->execute($taskName, $arguments);
         $taskOutput = ob_get_clean();
 
         return $taskOutput;

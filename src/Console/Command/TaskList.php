@@ -38,7 +38,7 @@ class TaskList extends Base
         }
 
         foreach ($tasks as $task) {
-            $output->writeln('* '.$task->getName());
+            $output->writeln('* '.$task->getSynopsis());
         }
     }
 }
