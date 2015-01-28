@@ -46,7 +46,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function runFred($options)
     {
-        $this->process = new Process('php "'.__DIR__.'/../../bin/fred" --no-ansi '.$options);
+        $this->process = new Process('php "'.__DIR__.'/../../bin/fred" --no-ansi '.str_replace('\'', '"', $options));
         $this->process->run();
     }
 
