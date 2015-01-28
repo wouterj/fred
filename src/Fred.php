@@ -11,6 +11,8 @@
 
 namespace WouterJ\Fred;
 
+use WouterJ\Fred\Exception\TaskNotFoundException;
+
 /**
  * @author Wouter J <wouter@wouterj.nl>
  */
@@ -62,14 +64,14 @@ class Fred
     }
 
     /**
-     * Execute a task.
+     * Executes a task.
      */
     public function execute($name)
     {
         $stack = $this->taskStack->getStackForTask($name);
 
         if (0 === count($stack)) {
-            throw new \InvalidArgumentException(sprintf('No task with name "%s" can be found', $name));
+            throw new TaskNotFoundException($name);
         }
 
         foreach ($stack as $task) {

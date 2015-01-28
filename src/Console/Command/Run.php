@@ -13,6 +13,7 @@ namespace WouterJ\Fred\Console\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use WouterJ\Fred\Exception\TaskNotFoundException;
 use WouterJ\Fred\Fred;
 
 /**
@@ -43,8 +44,8 @@ class Run extends Base
         $taskOutput = '';
         try {
             $taskOutput .= $this->executeAndBufferOutput($taskName, $fred);
-        } catch (\InvalidArgumentException $e) {
-            $output->writeln('Oh no! Fred couldn\'t find the task "'.$taskName.'" in the fred file (fred.php)');
+        } catch (TaskNotFoundException $e) {
+            $output->writeln("\r<error>Oh no! Fred couldn't find the task \"".$taskName.'" in the fred file (fred.php)</error>');
 
             return self::FRED_ERROR;
         } catch (\Exception $e) {
