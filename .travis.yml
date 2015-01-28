@@ -16,11 +16,11 @@ cache:
 matrix:
   include:
     - php: 5.3.3
-      env: COMPOSER_FLAGS='--prefer-lowest'
+      env: COMPOSER_FLAGS="--prefer-lowest"
 
 before_script:
   - composer selfupdate
-  - composer update "$COMPOSER_FLAGS"
+  - composer update $COMPOSER_FLAGS
 
 script:
   - ./vendor/bin/behat -fprogress
