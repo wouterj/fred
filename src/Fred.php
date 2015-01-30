@@ -11,6 +11,9 @@
 
 namespace WouterJ\Fred;
 
+use WouterJ\Fred\Exception\MissingArgumentsException;
+use WouterJ\Fred\Exception\TaskNotFoundException;
+
 /**
  * @author Wouter J <wouter@wouterj.nl>
  */
@@ -62,18 +65,34 @@ class Fred
     }
 
     /**
-     * Execute a task.
+     * Executes a task.
      */
-    public function execute($name)
+    public function execute($name, array $arguments = array())
     {
         $stack = $this->taskStack->getStackForTask($name);
 
         if (0 === count($stack)) {
-            throw new \InvalidArgumentException(sprintf('No task with name "%s" can be found', $name));
+            throw new TaskNotFoundException($name);
         }
 
         foreach ($stack as $task) {
-            call_user_func($task->getTask());
+            $callable = $task->getTask();
+            $callableReflection = new \ReflectionFunction($callable);
+            $callableArguments = array();
+
+            foreach ($callableReflection->getParameters() as $parameter) {
+                $name = $parameter->getName();
+
+                if (isset($arguments[$name])) {
+                    $callableArguments[] = $arguments[$name];
+                } elseif ($parameter->isOptional()) {
+                    $callableArguments[] = $parameter->getDefaultValue();
+                } else {
+                    throw new MissingArgumentsException($task->getName(), $task->getSynopsis());
+                }
+            }
+
+            return call_user_func_array($callable, $callableArguments);
         }
     }
 

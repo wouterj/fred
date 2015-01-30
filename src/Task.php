@@ -49,4 +49,28 @@ class Task
     {
         return $this->task;
     }
+    
+    public function getSynopsis()
+    {
+        $reflection = new \ReflectionFunction($this->getTask());
+        $taskSynopsis = $this->getName();
+        
+        foreach ($reflection->getParameters() as $parameter) {
+            $paramSynopsis = $parameter->getName().'=';
+            
+            if ($parameter->isDefaultValueAvailable()) {
+                $paramSynopsis .= $parameter->getDefaultValue();
+            } else {
+                $paramSynopsis .= '...';
+            }
+            
+            if ($parameter->isOptional()) {
+                $paramSynopsis = '['.$paramSynopsis.']';
+            }
+            
+            $taskSynopsis .= ' '.$paramSynopsis;
+        }
+        
+        return $taskSynopsis;
+    }
 }

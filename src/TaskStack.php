@@ -11,6 +11,8 @@
 
 namespace WouterJ\Fred;
 
+use WouterJ\Fred\Exception\TaskNotFoundException;
+
 /**
  * @author Wouter J <wouter@wouterj.nl>
  */
@@ -25,7 +27,7 @@ class TaskStack implements \IteratorAggregate
     public function getStackForTask($name)
     {
         if (!$this->has($name)) {
-            throw new \InvalidArgumentException(sprintf('No task with name "%s" found, did you mean %s.', $name, implode(', ', array_keys($this->tasks))));
+            throw new TaskNotFoundException($name);
         }
 
         $stack = new TaskStack();
