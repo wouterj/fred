@@ -12,13 +12,14 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/console": "2.*",
-        "symfony/finder": "2.*",
         "symfony/process": "2.*"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.1",
         "behat/behat": "~3.0",
-        "phpunit/phpunit": "4.*"
+        "phpunit/phpunit": "4.*",
+        "symfony/finder": "2.*",
+        "webmozart/glob": "1.0.*@dev"
     },
 
     "autoload": {
