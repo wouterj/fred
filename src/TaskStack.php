@@ -16,7 +16,7 @@ use WouterJ\Fred\Exception\TaskNotFoundException;
 /**
  * @author Wouter J <wouter@wouterj.nl>
  */
-class TaskStack implements \IteratorAggregate
+class TaskStack implements \IteratorAggregate, \Countable
 {
     /** @var Task[] */
     private $tasks = array();
@@ -72,5 +72,10 @@ class TaskStack implements \IteratorAggregate
     public function getIterator()
     {
         return new \ArrayIterator($this->tasks);
+    }
+
+    public function count()
+    {
+        return count($this->tasks);
     }
 }
